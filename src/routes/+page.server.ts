@@ -24,5 +24,5 @@ export const actions: Actions = {
     } catch (error) {
       return { error };
     }
-  },
+  }
 };

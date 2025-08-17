@@ -13,7 +13,7 @@
 	let dataChannel: RTCDataChannel | null = $state(null);
 
 	const startSession = () => {
-		// Initialize WebRTC connection
+		// Initialize WebRTC connection by submitting the form to the server side endpoint.
 		form?.requestSubmit();
 	};
 
@@ -74,6 +74,7 @@
 
 	const onSubmit = () => {
 		return async ({ result }: any) => {
+			// If the response from the submission to get an ephemeral key is successful, we can start the session.
 			if (result.type === 'success') {
 				// Handle success
 				const EPHEMERAL_KEY = result.data.data.client_secret.value;
@@ -88,6 +89,7 @@
 				const ms = await navigator.mediaDevices.getUserMedia({
 					audio: true
 				});
+
 				pc.addTrack(ms.getTracks()[0]);
 
 				// Set up data channel for sending and receiving events
